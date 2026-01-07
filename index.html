@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ujian Sejarah: Orde Baru</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; margin: 0; padding: 15px; user-select: none; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .timer-box { position: fixed; top: 0; left: 0; right: 0; background: #f57f17; color: white; text-align: center; padding: 12px; font-weight: bold; font-size: 18px; z-index: 1000; }
+        
+        /* PENGATURAN LOGO */
+        .logo-area { text-align: center; margin-bottom: 20px; margin-top: 10px; }
+        .logo-area img { width: 100px; height: auto; } /* Atur besar logo di sini (100px) */
+
+        h2 { text-align: center; margin-top: 10px; color: #333; margin-bottom: 10px; font-size: 22px; }
+        .warning-text { text-align: center; color: #d32f2f; font-size: 13px; background: #ffebee; padding: 10px; border-radius: 5px; border: 1px solid #ffcdd2; margin-bottom: 20px;}
+        
+        /* Desain Input */
+        .input-group { margin-bottom: 15px; }
+        label { font-weight: bold; display: block; margin-bottom: 5px; }
+        input[type="text"], select { width: 100%; padding: 12px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 6px; font-size: 16px; background: #fff; }
+        
+        .soal-card { background: #fff; border: 1px solid #e0e0e0; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
+        .nomor-urut { color: #f57f17; font-weight: bold; display: block; margin-bottom: 10px; }
+        .pertanyaan { font-weight: 600; margin-bottom: 15px; line-height: 1.5; }
+        .radio-label { display: block; padding: 10px; cursor: pointer; border: 1px solid transparent; border-radius: 6px; margin-bottom: 5px; font-weight: normal; }
+        .radio-label:hover { background: #fff3e0; border-color: #ffe0b2; }
+        input[type="radio"] { margin-right: 10px; transform: scale(1.2); }
+        
+        button { background: #2e7d32; color: white; padding: 15px; width: 100%; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        button:disabled { background: #ccc; cursor: not-allowed; }
+        #loading, #finished-screen { display: none; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <div class="timer-box">Sisa Waktu: <span id="time">Loading...</span></div>
+
+    <div class="container" id="exam-area">
+        
+        <div class="logo-area">
+            <img src="logo.png" alt="Logo Sekolah" onerror="this.style.display='none'">
+        </div>
+        
+        <h2>PEMERINTAHAN ORDE BARU</h2>
+        <div class="warning-text">⚠️ JANGAN KELUAR APLIKASI ATAU JAWABAN TERKIRIM OTOMATIS!</div>
+        
+        <div class="input-group">
+            <label>Nama Lengkap:</label>
+            <input type="text" id="namaSiswa" placeholder="Ketik Nama Lengkap..." required>
+        </div>
+
+        <div class="input-group">
+            <label>Kelas:</label>
+            <select id="kelasSiswa">
+                <option value="">-- Pilih Kelas --</option>
+                <optgroup label="KELAS 10">
+                    <option value="10 Satu">10 Satu</option>
+                    <option value="10 Dua">10 Dua</option>
+                    <option value="10 Tiga">10 Tiga</option>
+                    <option value="10 Empat">10 Empat</option>
+                </optgroup>
+                <optgroup label="KELAS 11">
+                    <option value="11 Satu">11 Satu</option>
+                    <option value="11 Dua">11 Dua</option>
+                    <option value="11 Tiga">11 Tiga</option>
+                </optgroup>
+                <optgroup label="KELAS 12">
+                    <option value="12 Satu">12 Satu</option>
+                    <option value="12 Dua">12 Dua</option>
+                    <option value="12 Tiga">12 Tiga</option>
+                </optgroup>
+            </select>
+        </div>
+
+        <form id="examForm">
+            <div id="wadah-soal">
+                
+                <div class="soal-card" data-kunci="C">
+                    <p class="pertanyaan">Tonggak lahirnya pemerintahan Orde Baru ditandai dengan dikeluarkannya...</p>
+                    <label class="radio-label"><input type="radio" name="q1" value="A"> A. Dekrit Presiden 5 Juli 1959</label>
+                    <label class="radio-label"><input type="radio" name="q1" value="B"> B. Trikora</label>
+                    <label class="radio-label"><input type="radio" name="q1" value="C"> C. Surat Perintah 11 Maret (Supersemar)</label>
+                    <label class="radio-label"><input type="radio" name="q1" value="D"> D. Tritura (Tri Tuntutan Rakyat)</label>
+                    <label class="radio-label"><input type="radio" name="q1" value="E"> E. Nawaksara</label>
+                </div>
+
+                <div class="soal-card" data-kunci="B">
+                    <p class="pertanyaan">Pada masa Orde Baru, pemerintah melakukan penyederhanaan (fusi) partai politik pada tahun 1973. Partai-partai Islam (NU, Parmusi, PSII, Perti) digabung menjadi satu partai yaitu...</p>
+                    <label class="radio-label"><input type="radio" name="q2" value="A"> A. Golkar</label>
+                    <label class="radio-label"><input type="radio" name="q2" value="B"> B. Partai Persatuan Pembangunan (PPP)</label>
+                    <label class="radio-label"><input type="radio" name="q2" value="C"> C. Partai Demokrasi Indonesia (PDI)</label>
+                    <label class="radio-label"><input type="radio" name="q2" value="D"> D. Masyumi</label>
+                    <label class="radio-label"><input type="radio" name="q2" value="E"> E. PNI</label>
+                </div>
+
+                <div class="soal-card" data-kunci="D">
+                    <p class="pertanyaan">Konsep yang menyatakan bahwa ABRI (TNI/Polri) memiliki dua peran, yaitu sebagai kekuatan pertahanan keamanan dan sebagai kekuatan sosial politik, disebut...</p>
+                    <label class="radio-label"><input type="radio" name="q3" value="A"> A. Sapta Marga</label>
+                    <label class="radio-label"><input type="radio" name="q3" value="B"> B. Eka Prasetya Pancakarsa</label>
+                    <label class="radio-label"><input type="radio" name="q3" value="C"> C. Reformasi ABRI</label>
+                    <label class="radio-label"><input type="radio" name="q3" value="D"> D. Dwifungsi ABRI</label>
+                    <label class="radio-label"><input type="radio" name="q3" value="E"> E. Panca Sila</label>
+                </div>
+
+                <div class="soal-card" data-kunci="A">
+                    <p class="pertanyaan">Salah satu keberhasilan ekonomi Orde Baru adalah swasembada pangan (beras) pada tahun 1984. Program pembangunan jangka panjang yang berfokus pada pertanian ini dikenal dengan istilah...</p>
+                    <label class="radio-label"><input type="radio" name="q4" value="A"> A. Repelita (Rencana Pembangunan Lima Tahun)</label>
+                    <label class="radio-label"><input type="radio" name="q4" value="B"> B. Revolusi Hijau</label>
+                    <label class="radio-label"><input type="radio" name="q4" value="C"> C. Trilogi Pembangunan</label>
+                    <label class="radio-label"><input type="radio" name="q4" value="D"> D. Ekonomi Terpimpin</label>
+                    <label class="radio-label"><input type="radio" name="q4" value="E"> E. INPRES Desa Tertinggal</label>
+                </div>
+
+                <div class="soal-card" data-kunci="C">
+                    <p class="pertanyaan">Isi dari Trilogi Pembangunan yang dicanangkan oleh pemerintah Orde Baru adalah...</p>
+                    <label class="radio-label"><input type="radio" name="q5" value="A"> A. Kebebasan pers, Demokrasi, dan Hak Asasi Manusia</label>
+                    <label class="radio-label"><input type="radio" name="q5" value="B"> B. Nasionalisme, Agama, dan Komunisme</label>
+                    <label class="radio-label"><input type="radio" name="q5" value="C"> C. Pemerataan pembangunan, Pertumbuhan ekonomi, dan Stabilitas nasional</label>
+                    <label class="radio-label"><input type="radio" name="q5" value="D"> D. Sandang, Pangan, dan Papan</label>
+                    <label class="radio-label"><input type="radio" name="q5" value="E"> E. Pendidikan, Kesehatan, dan Ekonomi</label>
+                </div>
+
+                <div class="soal-card" data-kunci="B">
+                    <p class="pertanyaan">Langkah pertama politik luar negeri yang diambil oleh pemerintahan Orde Baru untuk memulihkan citra Indonesia di mata dunia adalah...</p>
+                    <label class="radio-label"><input type="radio" name="q6" value="A"> A. Keluar dari PBB</label>
+                    <label class="radio-label"><input type="radio" name="q6" value="B"> B. Kembali menjadi anggota PBB dan mengakhiri konfrontasi dengan Malaysia</label>
+                    <label class="radio-label"><input type="radio" name="q6" value="C"> C. Membentuk poros Jakarta-Peking</label>
+                    <label class="radio-label"><input type="radio" name="q6" value="D"> D. Mengirim pasukan Garuda ke Kongo</label>
+                    <label class="radio-label"><input type="radio" name="q6" value="E"> E. Menyelenggarakan GANEFO</label>
+                </div>
+
+                <div class="soal-card" data-kunci="E">
+                    <p class="pertanyaan">Untuk menanamkan ideologi negara secara mendalam kepada masyarakat, pegawai negeri, dan pelajar, pemerintah Orde Baru mewajibkan penataran...</p>
+                    <label class="radio-label"><input type="radio" name="q7" value="A"> A. Bela Negara</label>
+                    <label class="radio-label"><input type="radio" name="q7" value="B"> B. Wajib Militer</label>
+                    <label class="radio-label"><input type="radio" name="q7" value="C"> C. Kewiraan</label>
+                    <label class="radio-label"><input type="radio" name="q7" value="D"> D. Sejarah Nasional</label>
+                    <label class="radio-label"><input type="radio" name="q7" value="E"> E. P4 (Pedoman Penghayatan dan Pengamalan Pancasila)</label>
+                </div>
+
+                <div class="soal-card" data-kunci="A">
+                    <p class="pertanyaan">Peristiwa kerusuhan sosial tahun 1974 yang dipicu oleh penolakan mahasiswa terhadap dominasi modal asing (Jepang) di Indonesia dikenal dengan nama...</p>
+                    <label class="radio-label"><input type="radio" name="q8" value="A"> A. Peristiwa Malari (Malapetaka Lima Belas Januari)</label>
+                    <label class="radio-label"><input type="radio" name="q8" value="B"> B. Tragedi Trisakti</label>
+                    <label class="radio-label"><input type="radio" name="q8" value="C"> C. Peristiwa Tanjung Priok</label>
+                    <label class="radio-label"><input type="radio" name="q8" value="D"> D. Peristiwa 27 Juli (Kudatuli)</label>
+                    <label class="radio-label"><input type="radio" name="q8" value="E"> E. Tritura</label>
+                </div>
+
+                <div class="soal-card" data-kunci="B">
+                    <p class="pertanyaan">Faktor utama penyebab runtuhnya kekuasaan Orde Baru pada tahun 1998 adalah...</p>
+                    <label class="radio-label"><input type="radio" name="q9" value="A"> A. Serangan militer dari negara asing</label>
+                    <label class="radio-label"><input type="radio" name="q9" value="B"> B. Krisis moneter yang berkepanjangan dan hilangnya kepercayaan rakyat</label>
+                    <label class="radio-label"><input type="radio" name="q9" value="C"> C. Meninggalnya Presiden Soeharto</label>
+                    <label class="radio-label"><input type="radio" name="q9" value="D"> D. Kekalahan Golkar dalam Pemilu 1997</label>
+                    <label class="radio-label"><input type="radio" name="q9" value="E"> E. Pemberontakan PKI gaya baru</label>
+                </div>
+
+                <div class="soal-card" data-kunci="C">
+                    <p class="pertanyaan">Presiden Soeharto mengundurkan diri dari jabatannya pada tanggal 21 Mei 1998 dan digantikan oleh...</p>
+                    <label class="radio-label"><input type="radio" name="q10" value="A"> A. Amien Rais</label>
+                    <label class="radio-label"><input type="radio" name="q10" value="B"> B. Megawati Soekarnoputri</label>
+                    <label class="radio-label"><input type="radio" name="q10" value="C"> C. B.J. Habibie</label>
+                    <label class="radio-label"><input type="radio" name="q10" value="D"> D. Abdurrahman Wahid (Gus Dur)</label>
+                    <label class="radio-label"><input type="radio" name="q10" value="E"> E. Try Sutrisno</label>
+                </div>
+
+            </div>
+
+            <button type="button" onclick="submitExam()" id="btnSubmit">KIRIM JAWABAN</button>
+            <p id="loading">Sedang mengirim nilai ke Database...</p>
+        </form>
+    </div>
+
+    <div class="container" id="finished-screen">
+        <h2>SELESAI</h2>
+        <div style="background:#e3f2fd; padding:20px; border-radius:10px; border:1px solid #90caf9;">
+            <p>Nilai Anda:</p>
+            <h1 id="score-display" style="font-size:70px; color:#f57f17;">0</h1>
+            <p id="msg-status">Jawaban tersimpan.</p>
+        </div>
+        <button onclick="window.close()" style="background:#333; margin-top:20px;">Tutup</button>
+    </div>
+
+    <script>
+        // ==========================================
+        // PASTE LINK SCRIPT ANDA DI BAWAH INI
+        // ==========================================
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyJcPpEefAUoR-mmCN40mriXkmlvFDx3-5KAZM3cT03iTkOtJqRYiB3yqQWi2H0YE3X/exec"; 
+        
+        let duration = 900; // 15 Menit
+
+        let isSubmitted = false;
+        window.onload = function() {
+            var box = document.getElementById("wadah-soal");
+            var els = Array.from(box.children);
+            for (var i = els.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                box.appendChild(els[j]);
+            }
+            Array.from(box.children).forEach((el, idx) => {
+                el.insertAdjacentHTML('afterbegin', `<span class="nomor-urut">Soal No. ${idx + 1}</span>`);
+            });
+        };
+        const timer = setInterval(() => {
+            let m = Math.floor(duration/60).toString().padStart(2,'0');
+            let s = (duration%60).toString().padStart(2,'0');
+            document.getElementById('time').innerText = `${m}:${s}`;
+            if (duration < 60) document.querySelector('.timer-box').style.backgroundColor = "red";
+            if(--duration < 0) processData("Waktu Habis");
+        }, 1000);
+        document.addEventListener("visibilitychange", function() {
+            if(document.hidden && !isSubmitted) processData("Curang (Keluar App)");
+        });
+        function submitExam() {
+            if(!document.getElementById('namaSiswa').value) { alert("Isi Nama!"); return; }
+            if(!document.getElementById('kelasSiswa').value) { alert("Pilih Kelas!"); return; }
+            if(confirm("Yakin selesai?")) processData("Jujur");
+        }
+        function processData(status) {
+            if(isSubmitted) return;
+            isSubmitted = true;
+            clearInterval(timer);
+            document.getElementById('btnSubmit').disabled = true;
+            document.getElementById('loading').style.display = 'block';
+            let benar = 0; let detail = [];
+            let allCards = document.querySelectorAll('.soal-card');
+            allCards.forEach((card) => {
+                let k = card.getAttribute('data-kunci');
+                let p = card.querySelector('input:checked');
+                let v = p ? p.value : "X";
+                if(v === k) benar++;
+                detail.push(v);
+            });
+            
+            let nilai = Math.round((benar/allCards.length)*100);
+            
+            fetch(SCRIPT_URL, {
+                method: "POST", mode: "no-cors",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    nama: document.getElementById('namaSiswa').value,
+                    kelas: document.getElementById('kelasSiswa').value,
+                    nilai: nilai, status: status, j1: detail.join(", ")
+                })
+            }).then(() => {
+                document.getElementById('exam-area').style.display = 'none';
+                document.querySelector('.timer-box').style.display = 'none';
+                document.getElementById('finished-screen').style.display = 'block';
+                document.getElementById('score-display').innerText = nilai;
+                if(status.includes("Curang")) {
+                    document.getElementById('msg-status').innerText = status;
+                    document.getElementById('msg-status').style.color = "red";
+                }
+            });
+        }
+    </script>
+</body>
+</html>
